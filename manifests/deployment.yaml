@@ -1,0 +1,21 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: golang-demo-deployment
+  labels:
+    app : golang-demo-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: golang-demo
+  template:
+    metadata:
+      labels:
+        project: golang-demo
+    spec:
+      containers:
+        - name : goapp
+          image: epamdmitriinadein/goapp-repo:latest
+          ports:
+            - containerPort: 8080
